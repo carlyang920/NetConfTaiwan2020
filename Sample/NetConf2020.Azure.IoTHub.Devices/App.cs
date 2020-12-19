@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Kingston.IoTHub.Devices.Client.Core.Interfaces;
 using NetConf2020.Azure.IoTHub.Devices.Configs;
+using NetConf2020.Azure.IoTHub.Devices.Interfaces;
 using NetConf2020.Azure.IoTHub.Devices.Services;
 using Newtonsoft.Json;
 

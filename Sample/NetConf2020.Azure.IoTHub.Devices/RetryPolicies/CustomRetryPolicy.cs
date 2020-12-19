@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Azure.Devices.Client;
 
-namespace Kingston.IoTHub.Devices.Client.Core.RetryPolicies
+namespace NetConf2020.Azure.IoTHub.Devices.RetryPolicies
 {
     public class CustomRetryPolicy : IRetryPolicy
     {

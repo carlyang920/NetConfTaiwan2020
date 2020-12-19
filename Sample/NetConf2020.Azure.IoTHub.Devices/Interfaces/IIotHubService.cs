@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Kingston.IoTHub.Devices.Client.Core.Interfaces
+namespace NetConf2020.Azure.IoTHub.Devices.Interfaces
 {
     public interface IIotHubService
     {

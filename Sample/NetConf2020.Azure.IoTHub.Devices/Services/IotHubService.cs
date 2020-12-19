@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Kingston.IoTHub.Devices.Client.Core.Interfaces;
-using Kingston.IoTHub.Devices.Client.Core.RetryPolicies;
 using Microsoft.Azure.Devices.Client;
 using NetConf2020.Azure.IoTHub.Devices.Configs;
+using NetConf2020.Azure.IoTHub.Devices.Interfaces;
+using NetConf2020.Azure.IoTHub.Devices.RetryPolicies;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
