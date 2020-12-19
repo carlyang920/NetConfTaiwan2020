@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "NetConf2020.Azure.IoTHub.Devices": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
