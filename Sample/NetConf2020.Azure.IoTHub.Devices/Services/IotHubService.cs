@@ -75,32 +75,12 @@ namespace NetConf2020.Azure.IoTHub.Devices.Services
             };
         }
 
-        #endregion
-
-        #region public functions
-
-        public async Task SendEventAsync<T>(List<T> dataList) where T :class
-        {
-            if (null == dataList)
-                dataList = new List<T>();
-
-            await SendEventAsync(JsonConvert.SerializeObject(dataList, Formatting.None));
-        }
-
-        /// <summary>
-            /// 非同步傳送事件訊息
-            /// </summary>
-            /// <param name="jsonArray">JSON List</param>
-            /// <param name="customProperties">自訂義屬性，會加入該批資料的Hub自訂義屬性中。</param>
-            /// <returns></returns>
-            public async Task SendEventAsync(string jsonArray)
+        private async Task SendToIotHubAsync(List<JObject> dataList)
         {
             var inserted = new List<JObject>();
 
             try
             {
-                var dataList = JsonConvert.DeserializeObject<List<JObject>>(jsonArray);
-
                 var dividedList = new List<JObject>();
                 var batchList = new List<List<JObject>>();
                 var byteCount = 0;
@@ -137,7 +117,7 @@ namespace NetConf2020.Azure.IoTHub.Devices.Services
                 {
                     var message = new Message(
                         _ioTHubConfig.Encoding.GetBytes(JsonConvert.SerializeObject(send))
-                        );
+                    );
 
                     await _deviceClient.SendEventAsync(message);
 
@@ -153,6 +133,35 @@ namespace NetConf2020.Azure.IoTHub.Devices.Services
 
                 throw;
             }
+        }
+
+        #endregion
+
+        #region public functions
+
+        public async Task SendEventAsync<T>(List<T> dataList) where T :class
+        {
+            if (null == dataList)
+                dataList = new List<T>();
+
+            await SendToIotHubAsync(
+                JsonConvert.DeserializeObject<List<JObject>>(
+                    JsonConvert.SerializeObject(dataList, Formatting.None)
+                )
+            );
+        }
+
+        /// <summary>
+            /// 非同步傳送事件訊息
+            /// </summary>
+            /// <param name="jsonArray">JSON List</param>
+            /// <param name="customProperties">自訂義屬性，會加入該批資料的Hub自訂義屬性中。</param>
+            /// <returns></returns>
+        public async Task SendEventAsync(string jsonArray)
+        {
+            await SendToIotHubAsync(
+                JsonConvert.DeserializeObject<List<JObject>>(jsonArray)
+            );
         }
 
         #endregion
